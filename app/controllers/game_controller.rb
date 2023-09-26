@@ -25,4 +25,10 @@ class GameController < ApplicationController
     5.times {@results_array.push(rand(1..4))}
     render({ :template => "game_templates/5d4"})
   end
+
+  def fifty_six
+    @results_array = []
+    50.times {@results_array.push(rand(1..6))}
+    render({ :template => "game_templates/50d6"})
+  end
 end
