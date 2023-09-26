@@ -3,32 +3,18 @@ class GameController < ApplicationController
     render({ :template => "game_templates/home"})
   end
 
-  def two_six
-    @results_array = []
-    2.times {@results_array.push(rand(1..6))}
-    render({ :template => "game_templates/2d6"})
-  end
-
-  def two_ten
-    @results_array = []
-    2.times {@results_array.push(rand(1..10))}
-    render({ :template => "game_templates/2d10"})
-  end
-
-  def one_twenty
-    @results = rand(1..20)
-    render({ :template => "game_templates/1d20"})
-  end
-
-  def five_four
-    @results_array = []
-    5.times {@results_array.push(rand(1..4))}
-    render({ :template => "game_templates/5d4"})
-  end
-
-  def fifty_six
-    @results_array = []
-    50.times {@results_array.push(rand(1..6))}
-    render({ :template => "game_templates/50d6"})
+  def flexible
+    @num_dice = params.fetch("numrolls").to_i
+    @sides = params.fetch("sides").to_i
+  
+    @rolls = []
+  
+    @num_dice.times do
+      die = rand(1..@sides )
+  
+      @rolls.push(die)
+    end
+  
+    render({ :template => "game_templates/flexible"})
   end
 end
